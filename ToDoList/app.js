@@ -1,10 +1,5 @@
 'use strict';
 
-//let banco = [
- //  {'texto': 'Estudar JS', 'status': ''},
-  // {'texto': 'netflix', 'status': 'checked'},
-  // {'texto': 'teste', 'status': 'checked'}
-//];
 
 const getBanco = () => JSON.parse(localStorage.getItem ('todoList')) ?? [];
 
