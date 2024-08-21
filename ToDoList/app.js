@@ -1,12 +1,14 @@
 'use strict';
 
-let banco = [
-   {'texto': 'Estudar JS', 'status': ''},
-   {'texto': 'netflix', 'status': 'checked'},
-   {'texto': 'teste', 'status': 'checked'}
-];
+//let banco = [
+ //  {'texto': 'Estudar JS', 'status': ''},
+  // {'texto': 'netflix', 'status': 'checked'},
+  // {'texto': 'teste', 'status': 'checked'}
+//];
 
-const getBanco = () => localStorage.getItem('todoList') ?? [];
+const getBanco = () => JSON.parse(localStorage.getItem ('todoList')) ?? [];
+
+const setBanco = (banco) => localStorage.setItem('todoList', JSON.stringify(banco));
 
 const criarItem = (texto, status, indice) => {
     const item = document.createElement('label');
@@ -28,6 +30,7 @@ const limparTarefas = () => {
 
 const atualizarTela = () => {
     limparTarefas();
+    const banco = getBanco();
     banco.forEach ( (item, indice) => criarItem (item.texto, item.status, indice));
 }
 
@@ -35,17 +38,23 @@ const addItem = (evento) => {
     const tecla = evento.key;
     const text = evento.target.value
     if (tecla === 'Enter'){
+        const banco = getBanco();
         banco.push ({'texto': text, 'status': ''});
+        setBanco(banco);
         atualizarTela();
         evento.target.value = '';
     }
 }
 const removerItem = (indice) => {
+    const banco = getBanco();
     banco.splice (indice, 1);
+    setBanco(banco);
     atualizarTela();
 }
 const atualizarItem = (indice) => {
+    const banco = getBanco();
     banco[indice].status = banco[indice].status === '' ? 'checked' : '';
+    setBanco(banco);
     atualizarTela();
 }
 const clickItem = (evento) => {
