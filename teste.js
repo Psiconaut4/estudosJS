@@ -8,7 +8,7 @@ function mostrar()
     {
         console.log(alunos[i])
     }
-    },1500)
+    })
 }
 
 function adicionar(aluno, callback)
@@ -17,7 +17,7 @@ function adicionar(aluno, callback)
     {
         alunos.push(aluno)
         callback()
-    },2000)  
+    })  
 }
 
 adicionar("rita",mostrar)
